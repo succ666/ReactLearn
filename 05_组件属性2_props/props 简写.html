@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="example1"></div>
+    <div id="example2"></div>
+    <!-- 引入react核心库 -->
+    <script type="text/javascript" src="../js/react.production.min.js"></script>
+    <!-- 引入react-dom，用于操作DOM -->
+    <script type="text/javascript" src="../js/react-dom.production.min.js"></script>
+    <!-- 引入babel，用于解析 jsx 为 js-->
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+    <!-- 引入prop-types，用于限制传递标签属性的：类型、必要性 -->
+    <script type="text/javascript" src="../js/prop-types.js"></script>
+
+
+    <script type="text/babel">/*此处必须改为babel，因为我们写的是jsx，需要结组babel翻译*/
+
+        /*
+            需求
+            1）姓名必须指定，且为字符串类型
+            2）性别为字符串类型，如果性别没有指定，默认为男
+            3）年龄为数字类型，如果年龄没有指定，默认为18
+        */
+        class Person extends React.Component{
+            //限制1标签传递属性
+            static propTypes = {
+                name:PropTypes.string.isRequired,
+                age:PropTypes.number,
+                sex:PropTypes.string
+            }
+            //默认值
+            static defaultProps = {
+                age:18,
+                sex:'男'
+            }
+
+            render(){
+                let {name,sex,age} = this.props
+                return(
+                    <div>
+                        <ul>
+                            <li>姓名：{name}</li>    
+                            <li>性别：{sex}</li>    
+                            <li>年龄：{age}</li>    
+                        </ul>    
+                    </div>
+                )
+            }
+        }
+        
+        let person = {name:'zhangsan',age:90,sex:'女'}
+
+        //限制标签传递属性时的必要性、类型
+        // ReactDOM.render(<Person name="小白" sex="男" age={19}/>,document.getElementById("example1"))
+        // ReactDOM.render(<Person name="小白"/>,document.getElementById("example2"))
+           ReactDOM.render(<Person {...person}/>,document.getElementById("example2"))
+    </script>
+</body>
+</html>

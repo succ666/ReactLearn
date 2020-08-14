@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="example1"></div>
+    <div id="example2"></div>
+    <!-- 引入react核心库 -->
+    <script type="text/javascript" src="../js/react.production.min.js"></script>
+    <!-- 引入react-dom，用于操作DOM -->
+    <script type="text/javascript" src="../js/react-dom.production.min.js"></script>
+    <!-- 引入babel，用于解析 jsx 为 js-->
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+    
+    <script type="text/babel">
+        function MyComponent(){
+            return <h3>工厂函数组件（简单组件）</h3>
+        }
+        ReactDOM.render(<MyComponent/>,document.getElementById('example1'))
+
+        class MyComponent2 extends React.Component{
+            render(){
+                return <h3>ES类组件（复杂组件）</h3>
+            }
+        }
+        ReactDOM.render(<MyComponent2/>,document.getElementById('example2'))
+    </script>
+   
+</body>
+</html>

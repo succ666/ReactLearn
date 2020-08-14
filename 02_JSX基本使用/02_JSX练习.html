@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .red{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="test"></div>
+    <!-- 
+        注意区分：【js语句】 与 【js表达式】！！！
+        1、表达式：一个表达式会产生一个值，它可以放在任何需要一个值得地方
+        举例：  a
+                3+b
+                demo("a","b")
+                arr.map()
+                arr.forEach()
+                ......等
+        2、语句：语句可以理解为一个行为，循环语句、if语句，都是典型得语句
+        举例：
+                if(){}
+                for(){}
+                try() catch(err){}
+                ......等
+
+     -->
+    <!-- 引入react核心库 -->
+    <script type="text/javascript" src="../js/react.production.min.js"></script>
+    <!-- 引入react-dom，用于操作DOM -->
+    <script type="text/javascript" src="../js/react-dom.production.min.js"></script>
+    <!-- 引入babel，用于解析 jsx 为 js-->
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+    
+    <script type="text/babel">
+        //准备一些数据
+        let data = ['Angular','React','Vue','jQuery']
+
+
+        let vDOM = (
+            <div>
+                <h2>前端js框架列表</h2>
+                <ul>
+                    {
+                        data.map((item,index)=>{
+                            // 我们暂时使用index作为每一个child得key，但是这种做法的某些时候会产生一些问题
+                            return <li key={index}>{item}</li>;
+                        })
+                    }
+                </ul>
+            </div>
+        )
+        
+        ReactDOM.render(vDOM,document.getElementById("test"))
+
+    </script>
+
+</body>
+</html>
